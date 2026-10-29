@@ -1,0 +1,26 @@
+package br.edu.storeapi.dto;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
+import java.math.BigDecimal;
+
+public record ProdutoRequest(
+        @NotBlank(message = "O nome é obrigatório")
+        String nome,
+
+        String descricao,
+
+        @NotNull(message = "O preço é obrigatório")
+        @Positive(message = "O preço deve ser maior que zero")
+        BigDecimal preco,
+
+        @NotNull(message = "O estoque é obrigatório")
+        @PositiveOrZero(message = "O estoque não pode ser negativo")
+        Integer estoque,
+
+        @NotBlank(message = "A categoria é obrigatória")
+        String categoria
+) {
+}
